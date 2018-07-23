@@ -7,7 +7,7 @@
 #'
 #' @return invisible()
 .onAttach <- function(libname, pkgname) {
-  start_message <- c( "CastorR:  Formatting Castor files\n\n"
+  start_message <- c( "RmdNameChunk: Read an Rmd rmarkdown file and apply enumerated code chunks\n\n"
                       , "  by Dr. Erik Barry Erhardt <erik@StatAcumen.com>\n\n"
                     )
   packageStartupMessage(start_message)
@@ -23,20 +23,20 @@
 #' @return
 #'
 #' @examples
-#' getOption("CastorR.name")
+#' getOption("RmdNameChunk.name")
 .onLoad <- function(libname, pkgname) {
   op <- options()
-  op.CastorR <- list(
-    #CastorR.path = "~/R-dev",
-    CastorR.install.args  = "",
-    CastorR.name          = "Erik Barry Erhardt",
-    CastorR.desc.author   = "Erik Erhardt <erik@StatAcumen.com> [aut, cre]",
-    CastorR.desc.license  = "Proprietary",
-    CastorR.desc.suggests = NULL,
-    CastorR.desc          = list()
+  op.RmdNameChunk <- list(
+    #RmdNameChunk.path = "~/R-dev",
+    RmdNameChunk.install.args  = "",
+    RmdNameChunk.name          = "Erik Barry Erhardt",
+    RmdNameChunk.desc.author   = "Erik Erhardt <erik@StatAcumen.com> [aut, cre]",
+    RmdNameChunk.desc.license  = "GPL-3",
+    RmdNameChunk.desc.suggests = NULL,
+    RmdNameChunk.desc          = list()
   )
-  toset <- !(names(op.CastorR) %in% names(op))
-  if (any(toset)) options(op.CastorR[toset])
+  toset <- !(names(op.RmdNameChunk) %in% names(op))
+  if (any(toset)) options(op.RmdNameChunk[toset])
 
   invisible()
 }
