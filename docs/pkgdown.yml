@@ -1,0 +1,8 @@
+pandoc: 1.19.2.1
+pkgdown: 1.1.0
+pkgdown_sha: ~
+articles:
+  RmdNameChunk_vignette: RmdNameChunk_vignette.html
+  test_in: test_in.html
+  test_out: test_out.html
+

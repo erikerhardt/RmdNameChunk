@@ -21,9 +21,8 @@ rmd_name_chunks <-
   # fn_in  <- "test_in.Rmd"
   # fn_out <- "test_out.Rmd"
   # prefix_chunk_name = "chunk-"
-
-  library(tidyverse)
-  library(stringr)
+  # library(tidyverse)
+  # library(stringr)
 
 
   if(is.null(fn_in)) {
@@ -36,7 +35,7 @@ rmd_name_chunks <-
   }
 
   if(!file.exists(fn_in)) {
-    stop(paste0("File does not exist: ", fn))
+    stop(paste0("File does not exist: ", fn_in))
   }
 
 
@@ -46,12 +45,12 @@ rmd_name_chunks <-
   # copy to rmd_out, the updated chunk lines will be replaced later
   rmd_out <- rmd_in
 
-  rmd_in_lower <- str_to_lower(rmd_in)
+  rmd_in_lower <- stringr::str_to_lower(rmd_in)
 
   ind_chunk_headers <-
     rmd_in_lower %>%
     # start of code chunk lines
-    str_detect(pattern = fixed("```{")) %>%
+    stringr::str_detect(pattern = stringr::fixed("```{")) %>%
     which()
 
   rmd_in_sub <-
@@ -65,12 +64,12 @@ rmd_name_chunks <-
   # else, delete the trailing brace "}"
   rmd_in_sub <-
     rmd_in_sub %>%
-    str_split_fixed(pattern = fixed(","), n = 2)
+    stringr::str_split_fixed(pattern = stringr::fixed(","), n = 2)
   for (i_row in 1:nrow(rmd_in_sub)) {
     if (rmd_in_sub[i_row, 2] == "") { # no options
       rmd_in_sub[i_row, 1] <-
         rmd_in_sub[i_row, 1] %>%
-        str_remove(pattern = fixed("}"))
+        stringr::str_remove(pattern = stringr::fixed("}"))
       rmd_in_sub[i_row, 2] <- "}"
     } else {                          # options
       rmd_in_sub[i_row, 2] <- paste0(",", rmd_in_sub[i_row, 2])
@@ -81,8 +80,8 @@ rmd_name_chunks <-
   # strip internal whitespace
   rmd_in_sub2 <-
     rmd_in_sub[, 1] %>%
-    str_replace_all(pattern = " ", replacement = "") %>%
-    str_replace_all(pattern = fixed("```{r"), replacement = "")
+    stringr::str_replace_all(pattern = " ", replacement = "") %>%
+    stringr::str_replace_all(pattern = stringr::fixed("```{r"), replacement = "")
 
   rmd_in_table <-
     data.frame(
@@ -99,7 +98,7 @@ rmd_name_chunks <-
   # Blank any with the prefix_chunk_name then renumber those.
   ind_blank <-
     rmd_in_table$chunk_name %>%
-    str_detect(pattern = fixed(prefix_chunk_name)) %>%
+    stringr::str_detect(pattern = stringr::fixed(prefix_chunk_name)) %>%
     which()
   if (length(ind_blank)) {
     rmd_in_table$chunk_name[ind_blank] <- ""
@@ -108,7 +107,7 @@ rmd_name_chunks <-
   # for all blank chunks, assign them sequentially numbered chunk names with the prefix.
   ind_to_name <-
     rmd_in_table$chunk_name %>%
-    str_detect(pattern = "^$") %>%
+    stringr::str_detect(pattern = "^$") %>%
     which()
 
   # number sequence
