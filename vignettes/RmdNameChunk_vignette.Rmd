@@ -1,0 +1,48 @@
+---
+title: "RmdNameChunk vignette"
+#subtitle: ""
+author: "Erik Erhardt"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 5
+    number_sections: false
+    code_folding: show
+  pdf_document:
+    toc: yes
+    toc_depth: 5
+    number_sections: false
+---
+
+<!---
+# Erik's compile commands in R:
+  ## https://github.com/erikerhardt/RmdNameChunk
+  rm(list=ls())
+  #dev.off(dev.list()["RStudioGD"])  # close all plots
+  fn.this <- "RmdNameChunk_vignette.Rmd"
+  setwd("C:/Dropbox/StatAcumen/consult/Rpackages/RmdNameChunk/vignettes")
+  library(knitr)
+  knitr::purl(fn.this)
+  rmarkdown::render(fn.this)
+-->
+
+# Installing from source
+
+Set the appropriate path and run this command:
+```{r, eval=FALSE}
+devtools::install_github("erikerhardt/RmdNameChunk")
+```
+
+Read an Rmd file, update existing prefixed code chunks, and renumber.
+```{r}
+library(RmdNameChunk)
+rmd_name_chunks(
+    fn_in             = "test_in.Rmd"
+  , fn_out            = "test_out.Rmd"
+  , prefix_chunk_name = "chunk-"
+  )
+```
+Review the input and output files to see how the chunk header names have been
+updated.
+
