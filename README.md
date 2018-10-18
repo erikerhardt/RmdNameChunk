@@ -26,16 +26,16 @@ test_in.Rmd was read in and test_out.Rmd was created.  The chunk headers are sho
 ```
 test_in.Rmd
  8 : ```{r setup, include=FALSE}
-22 : ```{r cars}
+22 : ```{R cars}
 28 : ```{r}
-32 : ```{  r  }
+32 : ```{  R  }
 36 : ```{r, echo=FALSE}
-40 : ```{   r, eval=FALSE}
+40 : ```{   R, eval=FALSE}
 44 : ```{r   , eval=FALSE}
 48 : ```{r chunk-2, eval=FALSE}
 52 : ```{r chunk-XXX  , eval=FALSE}
-56 : ```{r chunk-XXX2 , eval=FALSE}
-60 : ```{r chunk-XXX3 , eval=FALSE}
+56 : ```{R chunk-XXX2 , eval=FALSE}
+60 : ```{R chunk-XXX3 , eval=FALSE}
 64 : ```{r chunk-XXX4 , eval=FALSE}
 68 : ```{r chunk-XXX5 , eval=FALSE}
 72 : ```{r chunk-XXX6 , eval=FALSE}
