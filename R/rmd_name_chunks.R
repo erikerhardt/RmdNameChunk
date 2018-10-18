@@ -81,6 +81,7 @@ rmd_name_chunks <-
   rmd_in_sub2 <-
     rmd_in_sub[, 1] %>%
     stringr::str_replace_all(pattern = " ", replacement = "") %>%
+    stringr::str_replace_all(pattern = stringr::fixed("```{R"), replacement = "```{r") %>%
     stringr::str_replace_all(pattern = stringr::fixed("```{r"), replacement = "")
 
   rmd_in_table <-
